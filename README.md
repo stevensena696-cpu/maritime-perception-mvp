@@ -25,7 +25,7 @@ Validation metrics on the held-out MaSTr1325 split are excellent (mIoU 0.989), b
 
 ### Test 1 — Eye-level marina scene (similar style to training data)
 
-![Test 1 result](./images/test1_eyelevel_result.png)
+![Test 1 result](images/test1_eyelevel_result.png)
 
 **Result: near-perfect.** Water, sky, and vessels (including fine details like flags on masts) are segmented cleanly.
 
@@ -33,7 +33,7 @@ Validation metrics on the held-out MaSTr1325 split are excellent (mIoU 0.989), b
 
 | Original | Segmentation |
 |---|---|
-| ![Original](./images/test2_drone_original.png) | ![Result](./images/test2_drone_result.png) |
+| ![Original](images/test2_drone_original.png) | ![Result](images/test2_drone_result.png) |
 
 **Result: significant errors.**
 - Large open water is correctly classified.
@@ -46,7 +46,7 @@ Validation metrics on the held-out MaSTr1325 split are excellent (mIoU 0.989), b
 
 | Original | Segmentation |
 |---|---|
-| ![Original](./images/test3_clearsky_original.png) | ![Result](./images/test3_clearsky_result.png) |
+| ![Original](images/test3_clearsky_original.png) | ![Result](images/test3_clearsky_result.png) |
 
 **Result: sky misclassified as water.** Vessels and actual water (including reflections) are correctly segmented, but the entire clear blue sky is classified as **water**.
 
