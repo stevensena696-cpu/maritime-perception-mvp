@@ -74,6 +74,20 @@ Validation metrics on the held-out MaSTr1325 split are excellent (mIoU 0.989), b
 2. **Safety-critical classes degrade more gracefully.** Vessel/obstacle detection — the class that matters most for navigation safety — remained robust across all tested conditions, while the less safety-critical "sky" class was the most brittle.
 3. **Next steps to improve generalization:** incorporate training data from multiple camera angles and platforms (aerial/drone in addition to eye-level USV footage), a wider range of atmospheric conditions (clear and hazy skies), and consider domain adaptation techniques rather than relying on a single-source dataset.
 
+
+
+## Two-Stage Perception Pipeline
+
+The model can be combined with a YOLO-based vessel detector to form a two-stage maritime perception pipeline — mirroring the "context + characteristic model" architecture used in production maritime autonomy systems:
+
+**Stage 1 — Semantic segmentation** (this model): classifies every pixel as water / sky / obstacle  
+
+**Stage 2 — Vessel detection** (YOLOv8n): detects and localizes vessels within the scene
+
+![Two-stage pipeline result](images/test4_two_stage_pipeline.png)
+
+*Segmentation overlay (red=obstacle, blue=water, grey=sky) with YOLO vessel detection bounding boxes (green). Confidence scores shown per detection. Note: YOLOv8 classifies both the cargo ship and the navigation buoy as vessel — illustrating why a dedicated characteristic classification model is needed as a third stage.*
+
 ## Tech stack
 
 - PyTorch + `segmentation_models_pytorch` (DeepLabV3+, ResNet34 backbone, ImageNet pretrained)
