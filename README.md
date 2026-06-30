@@ -85,6 +85,34 @@ Validation metrics on the held-out MaSTr1325 split are excellent (mIoU 0.989), b
 
 Open [`maritime_segmentation_mvp.ipynb`](./maritime_segmentation_mvp.ipynb) in Google Colab, set the runtime to GPU, and run all cells in order. The notebook downloads the MaSTr1325 dataset automatically, trains the model, and launches an interactive Gradio demo at the end.
 
+
+## Edge Deployment Benchmark (ONNX)
+
+The model was exported to ONNX format and benchmarked for CPU-only inference — relevant for deployment on resource-constrained maritime edge hardware (ARM64, embedded systems).
+
+| Runtime | Hardware | Latency | FPS |
+|---|---|---|---|
+| PyTorch | T4 GPU (Colab) | 15.7 ms | 63.8 |
+| ONNX Runtime | CPU only (Colab) | 359.9 ms | 2.8 |
+
+**GPU/CPU speedup: 23x**
+
+> Note: CPU benchmark is on a shared Colab instance (not optimized embedded hardware). On dedicated ARM64 edge devices with INT8 quantization, real-world throughput would be significantly higher. For maritime situational awareness applications where scene change is gradual, sub-5 FPS CPU-only inference is often sufficient.
+
+### Exporting to ONNX
+
+```python
+torch.onnx.export(model, dummy_input, "maritime_model.onnx", opset_version=18)
+```
+
+### Running CPU inference
+
+```python
+import onnxruntime as ort
+sess = ort.InferenceSession("maritime_model.onnx", providers=["CPUExecutionProvider"])
+output = sess.run(None, {"input": image_array})
+```
+
 ## Dataset citation
 
 ```
