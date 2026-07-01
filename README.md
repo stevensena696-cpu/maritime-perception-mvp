@@ -77,7 +77,7 @@ Validation metrics on the held-out MaSTr1325 split are excellent (mIoU 0.989), b
 
 
 
-## Two-Stage Perception Pipeline
+## Three-Stage Perception Pipeline
 ![Segmentation demo](demo/segmentation_demo.gif)
 
 The model can be combined with a YOLO-based vessel detector to form a two-stage maritime perception pipeline — mirroring the "context + characteristic model" architecture used in production maritime autonomy systems:
@@ -89,6 +89,10 @@ The model can be combined with a YOLO-based vessel detector to form a two-stage 
 ![Two-stage pipeline result](images/test4_two_stage_pipeline.png)
 
 *Segmentation overlay (red=obstacle, blue=water, grey=sky) with YOLO vessel detection bounding boxes (green). Confidence scores shown per detection. Note: YOLOv8 classifies both the cargo ship and the navigation buoy as vessel — illustrating why a dedicated characteristic classification model is needed as a third stage.*
+
+**Stage 3 — Multi-target tracking demo (regatta footage, 39 vessels tracked across 300 frames):**
+
+https://github.com/stevensena696-cpu/maritime-perception-mvp/blob/main/demo/regata_tracked_v2.mp4
 
 ## Vessel Tracking Demo
 
