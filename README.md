@@ -96,6 +96,33 @@ A complete maritime perception pipeline across three stages:
 
 
 
+
+## Radar Simulation Pipeline
+
+A synthetic radar simulation pipeline that generates radar imagery from camera input and trains a dedicated radar segmentation model — demonstrating the full camera→radar→segmentation workflow used in maritime autonomy systems like ProteusCore.
+
+![Radar pipeline](images/radar_pipeline.png)
+
+*Left to right: (1) camera input, (2) camera segmentation (DeepLabV3+), (3) synthetic radar (physics-based simulation with sea clutter and Gaussian noise), (4) radar segmentation (U-Net/MobileNetV2 trained directly on radar imagery).*
+
+### Radar model performance
+
+| Model | Input | Parameters | mIoU |
+|---|---|---|---|
+| DeepLabV3+ (ResNet34) | Camera (3-channel RGB) | 28M | 0.989 |
+| U-Net (MobileNetV2) | Synthetic radar (1-channel) | 6.6M | 0.9995 |
+
+> Note: The radar model's high mIoU reflects training on synthetic data generated from the same segmentation masks used for evaluation. Real-world radar data would present additional challenges (multipath reflections, sea state variability, antenna pattern effects) not captured in this simulation. This pipeline demonstrates the architectural approach rather than production-ready radar perception.
+
+### Radar simulation physics
+
+The synthetic radar generator models key radar phenomenology:
+- **Obstacle returns** — high reflectivity (metal hulls, superstructures)
+- **Sea clutter** — exponential-distribution speckle noise on water surface
+- **Range falloff** — signal attenuation with distance from sensor
+- **Gaussian noise** — low-SNR environment simulation
+- **Range rings** — standard radar display overlay
+
 ## Tech stack
 
 - PyTorch + `segmentation_models_pytorch` (DeepLabV3+, ResNet34 backbone, ImageNet pretrained)
