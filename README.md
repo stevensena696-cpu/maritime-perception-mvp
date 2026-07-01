@@ -1,4 +1,5 @@
 # Maritime Scene Segmentation — Perception MVP
+[![Live Demo](https://img.shields.io/badge/🤗%20HuggingFace-Live%20Demo-blue)](https://huggingface.co/spaces/oginjo/maritime-perception)
 
 A semantic segmentation model that classifies maritime scenes into **water**, **sky**, and **obstacles/environment** (vessels, land, shoreline structures) — a foundational building block for maritime perception and autonomy systems (USVs, marine ADAS, situational awareness tools).
 
