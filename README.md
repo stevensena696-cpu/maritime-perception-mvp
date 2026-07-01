@@ -80,11 +80,11 @@ Validation metrics on the held-out MaSTr1325 split are excellent (mIoU 0.989), b
 ## Three-Stage Perception Pipeline
 ![Segmentation demo](demo/segmentation_demo.gif)
 
-The model can be combined with a YOLO-based vessel detector to form a two-stage maritime perception pipeline — mirroring the "context + characteristic model" architecture used in production maritime autonomy systems:
+A complete maritime perception pipeline across three stages:
 
-**Stage 1 — Semantic segmentation** (this model): classifies every pixel as water / sky / obstacle  
-
-**Stage 2 — Vessel detection** (YOLOv8n): detects and localizes vessels within the scene
+**Stage 1 — Semantic segmentation** (DeepLabV3+): classifies every pixel as water / sky / obstacle  
+**Stage 2 — Vessel detection** (YOLOv8n): detects and localizes vessels within the scene  
+**Stage 3 — Multi-target tracking** (ByteTrack): assigns persistent IDs and trajectory trails across frames
 
 ![Two-stage pipeline result](images/test4_two_stage_pipeline.png)
 
@@ -92,11 +92,9 @@ The model can be combined with a YOLO-based vessel detector to form a two-stage 
 
 **Stage 3 — Multi-target tracking demo (regatta footage, 39 vessels tracked across 300 frames):**
 
-https://github.com/stevensena696-cpu/maritime-perception-mvp/blob/main/demo/regata_tracked_v2.mp4
+> 📹 [Watch tracking video](https://github.com/stevensena696-cpu/maritime-perception-mvp/blob/main/demo/regata_tracked_v2.mp4) — green bounding boxes with persistent vessel IDs, yellow trajectory trails.
 
-## Vessel Tracking Demo
 
-Multi-target vessel tracking using ByteTrack on regatta footage. Each vessel receives a unique ID that persists across frames, with trajectory trails showing movement history.
 
 ![Tracking demo](demo/regata_tracked_v2.mp4)
 
