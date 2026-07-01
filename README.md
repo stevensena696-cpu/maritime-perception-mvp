@@ -144,10 +144,23 @@ The ConvLSTM model achieves comparable accuracy to the single-frame radar model 
 
 ## Tech stack
 
-- PyTorch + `segmentation_models_pytorch` (DeepLabV3+, ResNet34 backbone, ImageNet pretrained)
+**Perception models**
+- PyTorch + `segmentation_models_pytorch` — DeepLabV3+ (ResNet34, 28M params) for camera segmentation
+- U-Net (MobileNetV2, 6.6M params) for single-frame radar segmentation
+- Custom ConvLSTM TemporalRadarSegNet (0.09M params) for 4-frame temporal radar segmentation
+
+**Detection & tracking**
+- YOLOv8n (Ultralytics) for vessel detection
+- ByteTrack for multi-target persistent vessel tracking
+
+**Radar simulation**
+- Custom physics-based synthetic radar generator (sea clutter, Gaussian noise, range falloff, range rings)
+
+**Training & deployment**
 - Albumentations for augmentation
 - Trained on Google Colab (T4 GPU)
-- Gradio for the interactive demo
+- ONNX Runtime for CPU edge deployment benchmark
+- Gradio for the interactive demo (camera segmentation + radar simulation tabs)
 
 ## Running it yourself
 
