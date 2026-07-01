@@ -92,11 +92,9 @@ A complete maritime perception pipeline across three stages:
 
 **Stage 3 — Multi-target tracking demo (regatta footage, 39 vessels tracked across 300 frames):**
 
-> 📹 [Watch tracking video](https://github.com/stevensena696-cpu/maritime-perception-mvp/blob/main/demo/regata_tracked_v2.mp4) — green bounding boxes with persistent vessel IDs, yellow trajectory trails.
+> 📹 [Download tracking video](https://github.com/stevensena696-cpu/maritime-perception-mvp/raw/main/demo/regata_tracked_v2.mp4) — green bounding boxes with persistent vessel IDs, yellow trajectory trails.
 
 
-
-![Tracking demo](demo/regata_tracked_v2.mp4)
 
 ## Tech stack
 
