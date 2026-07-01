@@ -78,6 +78,9 @@ Validation metrics on the held-out MaSTr1325 split are excellent (mIoU 0.989), b
 
 
 ## Two-Stage Perception Pipeline
+<video width="100%" controls>
+  <source src="demo/segmentation_demo.mp4" type="video/mp4">
+</video>
 
 The model can be combined with a YOLO-based vessel detector to form a two-stage maritime perception pipeline — mirroring the "context + characteristic model" architecture used in production maritime autonomy systems:
 
