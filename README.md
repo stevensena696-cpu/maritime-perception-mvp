@@ -90,6 +90,12 @@ The model can be combined with a YOLO-based vessel detector to form a two-stage 
 
 *Segmentation overlay (red=obstacle, blue=water, grey=sky) with YOLO vessel detection bounding boxes (green). Confidence scores shown per detection. Note: YOLOv8 classifies both the cargo ship and the navigation buoy as vessel — illustrating why a dedicated characteristic classification model is needed as a third stage.*
 
+## Vessel Tracking Demo
+
+Multi-target vessel tracking using ByteTrack on regatta footage. Each vessel receives a unique ID that persists across frames, with trajectory trails showing movement history.
+
+![Tracking demo](demo/regata_tracked_v2.mp4)
+
 ## Tech stack
 
 - PyTorch + `segmentation_models_pytorch` (DeepLabV3+, ResNet34 backbone, ImageNet pretrained)
