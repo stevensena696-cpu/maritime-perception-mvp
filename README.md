@@ -123,6 +123,25 @@ The synthetic radar generator models key radar phenomenology:
 - **Gaussian noise** — low-SNR environment simulation
 - **Range rings** — standard radar display overlay
 
+
+## Temporal Radar Segmentation (ConvLSTM)
+
+A ConvLSTM-based temporal model that processes sequences of 4 consecutive radar frames — learning spatial-temporal context to improve segmentation robustness over single-frame approaches.
+
+![Temporal pipeline](images/temporal_pipeline.png)
+
+*4 consecutive synthetic radar frames (input) → ConvLSTM temporal segmentation (right). The model leverages motion context across frames to produce stable segmentation even as scene content changes.*
+
+### Model comparison
+
+| Model | Input | Parameters | mIoU | Temporal context |
+|---|---|---|---|---|
+| DeepLabV3+ (ResNet34) | Single camera frame | 28M | 0.989 | ❌ |
+| U-Net (MobileNetV2) | Single radar frame | 6.6M | 0.9995 | ❌ |
+| ConvLSTM TemporalNet | 4-frame radar sequence | **0.09M** | **0.9994** | ✅ |
+
+The ConvLSTM model achieves comparable accuracy to the single-frame radar model with **73x fewer parameters**, while additionally capturing temporal dynamics — demonstrating that lightweight temporal architectures are viable for resource-constrained maritime edge deployment.
+
 ## Tech stack
 
 - PyTorch + `segmentation_models_pytorch` (DeepLabV3+, ResNet34 backbone, ImageNet pretrained)
